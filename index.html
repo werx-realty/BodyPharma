@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Body Pharma — Premium Research Peptides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #1C1917;
+    --color-secondary: #44403C;
+    --color-accent: #0B6E8A;
+    --color-accent2: #1a9bb8;
+    --color-gold: #C9A84C;
+    --color-background: #FAFAF9;
+    --color-foreground: #0C0A09;
+    --color-muted: #E8ECF0;
+    --color-border: #D6D3D1;
+    --color-white: #FFFFFF;
+    --color-surface: #F5F5F4;
+    --font-heading: 'Bodoni Moda', Georgia, serif;
+    --font-body: 'Jost', system-ui, sans-serif;
+    --radius: 12px;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+    --shadow-md: 0 8px 32px rgba(0,0,0,0.10);
+    --shadow-lg: 0 24px 64px rgba(0,0,0,0.14);
+    --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--color-background); color: var(--color-foreground); line-height: 1.6; overflow-x: hidden; }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  button { cursor: pointer; font-family: var(--font-body); border: none; outline: none; }
+
+  /* ── HEADER ── */
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,250,249,0.94);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+    transition: var(--transition);
+  }
+  .header-inner {
+    max-width: 1440px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 70px;
+  }
+  .logo {
+    font-family: var(--font-heading); font-size: 22px; font-weight: 700;
+    letter-spacing: 0.04em; color: var(--color-primary);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent2));
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  }
+  .logo-icon svg { width: 20px; height: 20px; fill: white; }
+  .main-nav { display: flex; align-items: center; gap: 36px; }
+  .main-nav a {
+    font-size: 13px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--color-secondary);
+    transition: color var(--transition); position: relative;
+  }
+  .main-nav a::after {
+    content:''; position:absolute; bottom:-4px; left:0; right:0;
+    height:1px; background:var(--color-accent); transform:scaleX(0);
+    transition:transform var(--transition);
+  }
+  .main-nav a:hover { color: var(--color-primary); }
+  .main-nav a:hover::after { transform: scaleX(1); }
+  .header-actions { display: flex; align-items: center; gap: 20px; }
+  .header-actions button {
+    background: none; padding: 8px; border-radius: 8px;
+    color: var(--color-secondary); transition: all var(--transition);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .header-actions button:hover { background: var(--color-muted); color: var(--color-primary); }
+  .cart-btn { position: relative; }
+  .cart-count {
+    position: absolute; top: 2px; right: 2px;
+    background: var(--color-accent); color: white;
+    font-size: 10px; font-weight: 700; width: 16px; height: 16px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: auto; padding-top: 70px;
+    background: #d0d0d0;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-fade-bottom {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 140px;
+    background: linear-gradient(to bottom, transparent 0%, rgba(28,25,23,0.0) 20%, rgba(28,25,23,0.4) 60%, #1C1917 100%);
+    pointer-events: none; z-index: 2;
+  }
+  .hero-bg-shapes { position: absolute; inset: 0; pointer-events: none; }
+  .hero-circle {
+    position: absolute; border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    animation: float 8s ease-in-out infinite;
+  }
+  .hero-circle:nth-child(1) { width:600px;height:600px;top:-200px;right:-150px;animation-delay:0s; }
+  .hero-circle:nth-child(2) { width:400px;height:400px;bottom:-100px;left:-100px;animation-delay:2s; }
+  .hero-circle:nth-child(3) { width:300px;height:300px;top:50%;right:20%;animation-delay:4s; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+
+  .hero-inner {
+    max-width: 1440px; margin: 0 auto; padding: 60px 80px 60px;
+    display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+    position: relative; z-index: 1; width: 100%;
+  }
+  .hero-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.85); padding: 6px 16px; border-radius: 100px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero-label span { width:6px;height:6px;border-radius:50%;background:#4ade80; }
+  .hero-title {
+    font-family: var(--font-heading); font-size: clamp(36px,4vw,60px);
+    font-weight: 700; color: white; line-height: 1.1; margin-bottom: 24px;
+  }
+  .hero-title em { font-style: italic; color: rgba(255,255,255,0.7); }
+  .hero-subtitle {
+    font-size: 17px; color: rgba(255,255,255,0.7); line-height: 1.7;
+    max-width: 600px; margin-bottom: 32px; font-weight: 300;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero-cta-primary {
+    background: white; color: var(--color-primary);
+    padding: 16px 36px; border-radius: 100px;
+    font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    transition: all var(--transition); display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none;
+  }
+  .hero-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+  .hero-cta-secondary {
+    background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.4);
+    padding: 16px 36px; border-radius: 100px;
+    font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    transition: all var(--transition); display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+  }
+  .hero-cta-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); }
+  .hero-stats { display: flex; gap: 40px; margin-top: 36px; flex-wrap: wrap; }
+  .hero-stat-num { font-family: var(--font-heading); font-size: 30px; font-weight: 700; color: white; }
+  .hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .hero-visual { display: none; }
+  .hero-vials-showcase {
+    display: flex; align-items: flex-end; justify-content: center; gap: 20px;
+    position: relative;
+  }
+  .hero-vial-wrap {
+    display: flex; flex-direction: column; align-items: center;
+    filter: drop-shadow(0 24px 48px rgba(0,0,0,0.5));
+  }
+  .hero-vial-wrap.main { animation: vialFloat 6s ease-in-out infinite; }
+  .hero-vial-wrap.side-left-1 { animation: vialFloat 7s ease-in-out infinite; animation-delay: 1s; transform: scale(0.75); opacity: 0.85; }
+  .hero-vial-wrap.side-left-2 { animation: vialFloat 5s ease-in-out infinite; animation-delay: 3s; transform: scale(0.65); opacity: 0.7; }
+  .hero-vial-wrap.side-right-1 { animation: vialFloat 6.5s ease-in-out infinite; animation-delay: 2s; transform: scale(0.75); opacity: 0.85; }
+  .hero-vial-wrap.side-right-2 { animation: vialFloat 8s ease-in-out infinite; animation-delay: 0.5s; transform: scale(0.65); opacity: 0.7; }
+  @keyframes vialFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+  .hero-vial-wrap.side-left-1 { animation: vialFloatSm1 7s ease-in-out infinite; animation-delay:1s; }
+  .hero-vial-wrap.side-left-2 { animation: vialFloatSm2 5s ease-in-out infinite; animation-delay:3s; }
+  .hero-vial-wrap.side-right-1 { animation: vialFloatSm3 6.5s ease-in-out infinite; animation-delay:2s; }
+  .hero-vial-wrap.side-right-2 { animation: vialFloatSm4 8s ease-in-out infinite; animation-delay:0.5s; }
+  @keyframes vialFloatSm1 { 0%,100%{transform:scale(0.75) translateY(0)} 50%{transform:scale(0.75) translateY(-10px)} }
+  @keyframes vialFloatSm2 { 0%,100%{transform:scale(0.65) translateY(0) opacity:0.7} 50%{transform:scale(0.65) translateY(-8px)} }
+  @keyframes vialFloatSm3 { 0%,100%{transform:scale(0.75) translateY(0)} 50%{transform:scale(0.75) translateY(-12px)} }
+  @keyframes vialFloatSm4 { 0%,100%{transform:scale(0.65) translateY(0)} 50%{transform:scale(0.65) translateY(-6px)} }
+  .hero-glow {
+    position: absolute; width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(26,155,184,0.25) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none;
+  }
+
+  /* ── PRODUCT CIRCLES SLIDER ── */
+  .product-circles-section { background: var(--color-primary); padding: 40px 0; }
+  .circles-slider-wrap { position: relative; }
+  .circles-slider-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%; z-index: 10;
+    background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.25);
+    color: white; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all var(--transition);
+  }
+  .circles-slider-btn:hover { background: rgba(255,255,255,0.28); }
+  .circles-slider-btn.prev { left: 16px; }
+  .circles-slider-btn.next { right: 16px; }
+  .product-circles-track-wrap {
+    overflow: hidden; padding: 12px 60px;
+    cursor: grab; user-select: none;
+  }
+  .product-circles-track-wrap.dragging { cursor: grabbing; }
+  .product-circles-track {
+    display: flex; gap: 28px;
+    will-change: transform;
+    animation: scrollCircles 35s linear infinite;
+  }
+  .product-circles-track:hover { animation-play-state: paused; }
+  @keyframes scrollCircles {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .product-circle {
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    cursor: pointer; flex-shrink: 0; transition: transform var(--transition);
+    width: 136px;
+  }
+  .product-circle:hover { transform: translateY(-5px); }
+  .product-circle-img {
+    width: 120px; height: 120px; border-radius: 50%;
+    border: 2.5px solid rgba(255,255,255,0.18);
+    overflow: hidden; background: #f0eeeb;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  .product-circle:hover .product-circle-img {
+    border-color: var(--color-accent2); border-width: 3px;
+    box-shadow: 0 0 0 4px rgba(26,155,184,1);
+  }
+  .product-circle-img svg { width: 80px; height: 104px; object-fit: contain; }
+  .product-circle-img img { width: 88%; height: 88%; object-fit: contain; }
+  .product-circle-name {
+    font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.85);
+    text-transform: uppercase; letter-spacing: 0.06em; text-align: center;
+    line-height: 1.3;
+  }
+
+
+  /* ── EDITORIAL SECTION ── */
+  .editorial-section { padding: 0; }
+  .editorial-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; height: 680px; }
+  .editorial-panel {
+    position: relative; overflow: hidden; cursor: pointer;
+  }
+  .editorial-panel img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  }
+  .editorial-panel:hover img { transform: scale(1.05); }
+  .editorial-panel-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, transparent 50%);
+  }
+  .editorial-panel-label {
+    position: absolute; top: 24px; left: 24px;
+    font-family: var(--font-heading); font-size: 22px; font-weight: 700;
+    color: white; line-height: 1.1; text-transform: uppercase; letter-spacing: 0.04em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+  .editorial-panel-bg {
+    width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+    transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  }
+  .editorial-panel:hover .editorial-panel-bg { transform: scale(1.05); }
+  .editorial-panel-bg img { height: 70%; object-fit: contain; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3)); }
+  @media (max-width: 768px) {
+    .editorial-grid { grid-template-columns: 1fr; height: auto; }
+    .editorial-panel { height: 280px; }
+  }
+  /* ── TRUST BAR ── */
+  .trust-bar { background: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 28px 0; }
+  .trust-bar-inner {
+    max-width: 1440px; margin: 0 auto; padding: 0 40px;
+    display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap;
+  }
+  .trust-item { display: flex; align-items: center; gap: 10px; color: var(--color-secondary); font-size: 13px; font-weight: 500; }
+  .trust-item svg { width:20px;height:20px;stroke:var(--color-accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0; }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 0; }
+  .section-inner { max-width: 1440px; margin: 0 auto; padding: 0 40px; }
+  .section-label { font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-accent);margin-bottom:12px; }
+  .section-title { font-family:var(--font-heading);font-size:clamp(32px,4vw,52px);font-weight:700;color:var(--color-primary);line-height:1.15;margin-bottom:16px; }
+  .section-subtitle { font-size:16px;color:var(--color-secondary);max-width:560px;line-height:1.7;font-weight:300; }
+  .section-header { margin-bottom: 60px; }
+  .section-header.centered { text-align: center; }
+  .section-header.centered .section-subtitle { margin: 0 auto; }
+
+  /* ── PRODUCTS GRID ── */
+  .products-section { background: white; }
+  .products-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; background: white; }
+  .product-card {
+    background: white; border-radius: 0;
+    border: 1px solid #1C1917; overflow: hidden;
+    transition: all var(--transition); cursor: pointer; position: relative;
+  }
+  .product-card:hover { transform: none; box-shadow: none; }
+  .product-card:hover .product-card-img img { transform: scale(1.04); }
+  .product-card-badge {
+    position: absolute; top: 12px; left: 0; z-index: 2;
+    background: var(--color-primary); color: white;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 12px;
+  }
+  .product-card-img {
+    height: 280px; display: flex; align-items: center; justify-content: center;
+    background: #efefed; padding: 0;
+    position: relative; overflow: hidden;
+  }
+  .product-card-img::before { display: none; }
+  .product-card-img svg, .product-card-img img {
+    height: 260px; width: auto; max-width: 100%;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    position: relative; z-index: 1;
+    filter: none;
+    object-fit: contain;
+  }
+  .product-card-body { padding: 14px 16px 18px; background: white; }
+  .product-card-name { font-family:var(--font-body);font-size:12px;font-weight:700;color:var(--color-primary);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em; }
+  .product-card-desc { font-size:12px;color:var(--color-secondary);line-height:1.4;margin-bottom:10px; }
+  .product-card-footer { display:flex;align-items:center;justify-content:space-between; }
+  .product-card-price { font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--color-primary); }
+  .product-card-price span { font-family:var(--font-body);font-size:12px;color:var(--color-secondary);font-weight:400; }
+  .add-to-cart-btn {
+    background: none; color: var(--color-primary);
+    width: auto; height: auto; border-radius: 0; padding: 0;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 4px;
+    transition: color var(--transition); border: none; cursor: pointer;
+    text-decoration: underline;
+  }
+  .add-to-cart-btn:hover { color: var(--color-accent); transform: none; }
+  .add-to-cart-btn svg { display: none; }
+
+  /* ── WHY US ── */
+  .why-us-section { background: var(--color-surface); }
+  .why-us-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; }
+  .why-card { background:white;border-radius:var(--radius);padding:36px;border:1px solid var(--color-border);transition:all var(--transition); }
+  .why-card:hover { box-shadow:var(--shadow-md);transform:translateY(-4px);border-color:transparent; }
+  .why-icon { width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--color-accent),var(--color-accent2));display:flex;align-items:center;justify-content:center;margin-bottom:20px; }
+  .why-icon svg { width:24px;height:24px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round; }
+  .why-title { font-family:var(--font-heading);font-size:20px;font-weight:600;color:var(--color-primary);margin-bottom:10px; }
+  .why-desc { font-size:14px;color:var(--color-secondary);line-height:1.7; }
+
+  /* ── BEST SELLERS ── */
+  .best-sellers-section { background:linear-gradient(135deg,var(--color-primary),#221a14);color:white;position:relative;overflow:hidden; }
+  .best-sellers-section::before { content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+  .best-sellers-inner { max-width:1440px;margin:0 auto;padding:100px 40px;display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:center;position:relative;z-index:1; }
+  .best-sellers-label { font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-accent2);margin-bottom:12px; }
+  .best-sellers-title { font-family:var(--font-heading);font-size:clamp(36px,4vw,56px);font-weight:700;line-height:1.1;margin-bottom:20px; }
+  .best-sellers-desc { font-size:15px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:32px;font-weight:300; }
+  .best-sellers-products { display:flex;gap:20px;flex-wrap:wrap; }
+  .best-seller-card { background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:20px;width:calc(33.333% - 14px);transition:all var(--transition);cursor:pointer; }
+  .best-seller-card:hover { background:rgba(255,255,255,0.1);transform:translateY(-4px); }
+  .best-seller-card svg, .best-seller-card img { height:100px;width:auto;margin:0 auto 12px;filter:drop-shadow(0 8px 16px rgba(0,0,0,0.35));object-fit:contain;display:block; }
+  .best-seller-name { font-size:13px;font-weight:600;text-align:center;color:white;margin-bottom:4px; }
+  .best-seller-price { font-size:12px;text-align:center;color:rgba(255,255,255,0.6); }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-section { background: white; }
+  .testimonials-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:28px; }
+  .testimonial-card { background:var(--color-background);border:1px solid var(--color-border);border-radius:var(--radius);padding:32px;transition:all var(--transition); }
+  .testimonial-card:hover { box-shadow:var(--shadow-md);border-color:transparent; }
+  .testimonial-stars { display:flex;gap:4px;margin-bottom:16px; }
+  .testimonial-stars svg { width:16px;height:16px;fill:#F59E0B; }
+  .testimonial-text { font-size:15px;color:var(--color-secondary);line-height:1.75;margin-bottom:20px;font-style:italic; }
+  .testimonial-author { display:flex;align-items:center;gap:12px; }
+  .testimonial-avatar { width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--color-accent),var(--color-accent2));display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:white;font-family:var(--font-heading); }
+  .testimonial-name { font-size:14px;font-weight:600;color:var(--color-primary); }
+  .testimonial-role { font-size:12px;color:var(--color-secondary); }
+
+  /* ── QUALITY ── */
+  .quality-section { background: var(--color-surface); }
+  .quality-inner { max-width:1440px;margin:0 auto;padding:100px 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center; }
+  .quality-steps { display:flex;flex-direction:column;gap:28px;margin-top:40px; }
+  .quality-step { display:flex;gap:20px;align-items:flex-start; }
+  .quality-step-num { width:40px;height:40px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--color-accent),var(--color-accent2));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:white;font-family:var(--font-heading); }
+  .quality-step-title { font-size:16px;font-weight:600;color:var(--color-primary);margin-bottom:4px; }
+  .quality-step-desc { font-size:14px;color:var(--color-secondary);line-height:1.6; }
+  .quality-visual { display:grid;grid-template-columns:1fr 1fr;gap:16px; }
+  .quality-stat-card { background:white;border-radius:var(--radius);padding:28px;border:1px solid var(--color-border);text-align:center; }
+  .quality-stat-num { font-family:var(--font-heading);font-size:36px;font-weight:700;color:var(--color-accent);margin-bottom:6px; }
+  .quality-stat-label { font-size:13px;color:var(--color-secondary);line-height:1.4; }
+
+  /* ── FAQ ── */
+  .faq-section { background: white; }
+  .faq-list { max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:12px; }
+  .faq-item { border:1px solid var(--color-border);border-radius:var(--radius);overflow:hidden; }
+  .faq-question { padding:22px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:white;transition:background var(--transition);font-size:16px;font-weight:500;color:var(--color-primary);gap:16px; }
+  .faq-question:hover { background:var(--color-surface); }
+  .faq-icon { width:24px;height:24px;flex-shrink:0;transition:transform var(--transition); }
+  .faq-answer { max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.35s ease;font-size:14px;color:var(--color-secondary);line-height:1.75;padding:0 28px; }
+  .faq-item.open .faq-answer { max-height:300px;padding:0 28px 22px; }
+  .faq-item.open .faq-icon { transform:rotate(45deg); }
+
+  /* ── NEWSLETTER ── */
+  .newsletter-section { background:linear-gradient(135deg,var(--color-accent),var(--color-accent2));color:white; }
+  .newsletter-inner { max-width:700px;margin:0 auto;padding:80px 40px;text-align:center; }
+  .newsletter-title { font-family:var(--font-heading);font-size:clamp(28px,4vw,44px);font-weight:700;margin-bottom:14px; }
+  .newsletter-subtitle { font-size:16px;color:rgba(255,255,255,0.8);margin-bottom:36px;font-weight:300; }
+  .newsletter-form { display:flex;gap:12px;max-width:500px;margin:0 auto; }
+  .newsletter-input { flex:1;padding:16px 22px;border-radius:100px;border:none;font-family:var(--font-body);font-size:15px;background:rgba(255,255,255,0.15);color:white;backdrop-filter:blur(10px);outline:none;transition:background var(--transition); }
+  .newsletter-input::placeholder { color:rgba(255,255,255,0.6); }
+  .newsletter-input:focus { background:rgba(255,255,255,0.25); }
+  .newsletter-submit { padding:16px 28px;border-radius:100px;border:none;background:white;color:var(--color-accent);font-family:var(--font-body);font-size:14px;font-weight:700;cursor:pointer;transition:all var(--transition);white-space:nowrap; }
+  .newsletter-submit:hover { transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2); }
+
+  /* ── FOOTER ── */
+  .site-footer { background:var(--color-primary);color:rgba(255,255,255,0.7);padding:80px 0 0; }
+  .footer-inner { max-width:1440px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px; }
+  .footer-brand .logo { color:white;margin-bottom:16px; }
+  .footer-brand-desc { font-size:14px;line-height:1.75;max-width:280px; }
+  .footer-social { display:flex;gap:12px;margin-top:24px; }
+  .social-btn { width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:all var(--transition);cursor:pointer; }
+  .social-btn:hover { background:var(--color-accent2); }
+  .social-btn svg { width:16px;height:16px;fill:white; }
+  .footer-col-title { font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:white;margin-bottom:20px; }
+  .footer-links { display:flex;flex-direction:column;gap:10px; }
+  .footer-links a { font-size:14px;color:rgba(255,255,255,0.6);transition:color var(--transition); }
+  .footer-links a:hover { color:white; }
+  .footer-bottom { max-width:1440px;margin:0 auto;padding:24px 40px;border-top:1px solid rgba(255,255,255,0.08);margin-top:60px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px; }
+  .footer-bottom-text { font-size:13px;color:rgba(255,255,255,0.4); }
+
+  /* ── CART DRAWER ── */
+  .cart-overlay { position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;opacity:0;pointer-events:none;transition:opacity var(--transition);backdrop-filter:blur(4px); }
+  .cart-overlay.open { opacity:1;pointer-events:all; }
+  .cart-drawer { position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100vw;background:white;z-index:201;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column; }
+  .cart-drawer.open { transform:translateX(0); }
+  .cart-header { padding:24px 28px;border-bottom:1px solid var(--color-border);display:flex;justify-content:space-between;align-items:center; }
+  .cart-header h2 { font-family:var(--font-heading);font-size:22px;font-weight:700;color:var(--color-primary); }
+  .cart-close { width:36px;height:36px;border-radius:50%;background:var(--color-muted);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--transition); }
+  .cart-close:hover { background:var(--color-border); }
+  .cart-items { flex:1;overflow-y:auto;padding:20px 28px; }
+  .cart-item { display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--color-border); }
+  .cart-item-img { width:60px;height:80px;flex-shrink:0;background:var(--color-surface);border-radius:8px;padding:4px;display:flex;align-items:center;justify-content:center; }
+  .cart-item-img svg, .cart-item-img img { height:70px;width:auto;object-fit:contain; }
+  .cart-item-info { flex:1; }
+  .cart-item-name { font-size:14px;font-weight:600;color:var(--color-primary);margin-bottom:4px; }
+  .cart-item-variant { font-size:12px;color:var(--color-secondary);margin-bottom:8px; }
+  .cart-item-bottom { display:flex;align-items:center;justify-content:space-between; }
+  .qty-control { display:flex;align-items:center;gap:8px; }
+  .qty-btn { width:28px;height:28px;border-radius:50%;background:var(--color-muted);border:none;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all var(--transition); }
+  .qty-btn:hover { background:var(--color-border); }
+  .qty-num { font-size:14px;font-weight:600;min-width:20px;text-align:center; }
+  .cart-item-price { font-size:15px;font-weight:700;color:var(--color-primary); }
+  .cart-footer { padding:20px 28px;border-top:1px solid var(--color-border); }
+  .cart-subtotal { display:flex;justify-content:space-between;margin-bottom:6px; }
+  .cart-subtotal-label { font-size:14px;color:var(--color-secondary); }
+  .cart-subtotal-val { font-size:14px;font-weight:600;color:var(--color-primary); }
+  .cart-total { display:flex;justify-content:space-between;margin-bottom:20px;padding-top:14px;border-top:1px solid var(--color-border); }
+  .cart-total-label { font-size:16px;font-weight:700;color:var(--color-primary); }
+  .cart-total-val { font-size:20px;font-weight:700;font-family:var(--font-heading);color:var(--color-primary); }
+  .checkout-btn { width:100%;padding:18px;border-radius:100px;border:none;background:var(--color-primary);color:white;font-family:var(--font-body);font-size:15px;font-weight:700;letter-spacing:0.04em;cursor:pointer;transition:all var(--transition); }
+  .checkout-btn:hover { background:var(--color-accent); }
+  .cart-empty { text-align:center;padding:60px 20px; }
+  .cart-empty svg { width:64px;height:64px;stroke:var(--color-border);margin:0 auto 16px;fill:none;stroke-width:1.5; }
+  .cart-empty p { color:var(--color-secondary);font-size:15px; }
+
+  /* ── PRODUCT MODAL ── */
+  .modal-overlay { position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:300;opacity:0;pointer-events:none;transition:opacity var(--transition);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px; }
+  .modal-overlay.open { opacity:1;pointer-events:all; }
+  .modal-box { background:white;border-radius:20px;max-width:880px;width:100%;max-height:90vh;overflow-y:auto;transform:scale(0.95) translateY(20px);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);box-shadow:var(--shadow-lg);position:relative; }
+  .modal-overlay.open .modal-box { transform:scale(1) translateY(0); }
+  .modal-inner { display:grid;grid-template-columns:1fr 1fr; }
+  .modal-img-side { background:linear-gradient(145deg,#eef4fa,#e2ecf5);border-radius:20px 0 0 20px;display:flex;align-items:center;justify-content:center;padding:40px;min-height:400px; }
+  .modal-img-side svg, .modal-img-side img { max-height:300px;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.2));object-fit:contain; }
+  .modal-info { padding:40px; }
+  .modal-close { position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.08);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--transition);z-index:10; }
+  .modal-close:hover { background:rgba(0,0,0,0.15); }
+  .modal-product-label { font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent);margin-bottom:8px; }
+  .modal-product-name { font-family:var(--font-heading);font-size:28px;font-weight:700;color:var(--color-primary);margin-bottom:6px; }
+  .modal-product-variant { font-size:14px;color:var(--color-secondary);margin-bottom:20px; }
+  .modal-product-price { font-family:var(--font-heading);font-size:32px;font-weight:700;color:var(--color-primary);margin-bottom:24px; }
+  .modal-product-desc { font-size:14px;color:var(--color-secondary);line-height:1.75;margin-bottom:28px; }
+  .modal-qty-row { display:flex;align-items:center;gap:16px;margin-bottom:16px; }
+  .modal-qty { display:flex;align-items:center;gap:12px;background:var(--color-surface);border-radius:100px;padding:6px 16px; }
+  .modal-qty-btn { width:32px;height:32px;border-radius:50%;border:none;background:white;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-sm);transition:all var(--transition); }
+  .modal-qty-btn:hover { background:var(--color-muted); }
+  .modal-qty-num { font-size:16px;font-weight:700;min-width:24px;text-align:center; }
+  .modal-add-btn { flex:1;padding:16px 28px;border-radius:100px;border:none;background:var(--color-primary);color:white;font-family:var(--font-body);font-size:14px;font-weight:700;cursor:pointer;transition:all var(--transition); }
+  .modal-add-btn:hover { background:var(--color-accent); }
+  .modal-badges { display:flex;gap:10px;flex-wrap:wrap;margin-top:20px; }
+  .modal-badge { display:flex;align-items:center;gap:6px;background:var(--color-surface);border-radius:100px;padding:6px 14px;font-size:11px;font-weight:600;color:var(--color-secondary);text-transform:uppercase;letter-spacing:0.06em; }
+  .modal-badge svg { width:14px;height:14px;stroke:var(--color-accent);fill:none;stroke-width:2; }
+
+  /* ── ANIMATIONS ── */
+  .reveal { opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease; }
+  .reveal.visible { opacity:1;transform:translateY(0); }
+  .reveal-delay-1 { transition-delay:0.1s; }
+  .reveal-delay-2 { transition-delay:0.2s; }
+  .reveal-delay-3 { transition-delay:0.3s; }
+  .reveal-delay-4 { transition-delay:0.4s; }
+
+  /* ── TOAST ── */
+  .toast { position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--color-primary);color:white;padding:14px 24px;border-radius:100px;font-size:14px;font-weight:500;z-index:500;transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-lg);white-space:nowrap; }
+  .toast.show { transform:translateX(-50%) translateY(0); }
+  .toast-icon { width:20px;height:20px;background:#4ade80;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width:1200px) {
+    .products-grid { grid-template-columns:repeat(3,1fr); }
+    .footer-inner { grid-template-columns:1fr 1fr;gap:40px; }
+  }
+  @media (max-width:1024px) {
+    .hero-inner { flex-direction:column; }
+    .best-sellers-inner { grid-template-columns:1fr;gap:40px; }
+    .quality-inner { grid-template-columns:1fr;gap:40px; }
+    .modal-inner { grid-template-columns:1fr; }
+    .modal-img-side { border-radius:20px 20px 0 0;min-height:260px; }
+    .why-us-grid { grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:768px) {
+    .header-inner { padding:0 20px; }
+    .main-nav { display:none; }
+    .section-inner { padding:0 20px; }
+    section { padding:60px 0; }
+    .hero-inner { padding:60px 20px; }
+    .products-grid { grid-template-columns:repeat(2,1fr); }
+    .why-us-grid { grid-template-columns:1fr; }
+    .testimonials-grid { grid-template-columns:1fr; }
+    .best-sellers-products .best-seller-card { width:calc(50% - 10px); }
+    .footer-inner { grid-template-columns:1fr;gap:36px;padding:0 20px; }
+    .footer-bottom { padding:24px 20px;flex-direction:column;text-align:center; }
+    .newsletter-form { flex-direction:column; }
+    .newsletter-inner { padding:60px 20px; }
+    .trust-bar-inner { gap:24px; }
+    .quality-visual { grid-template-columns:1fr 1fr; }
+    .product-circles-track-wrap { padding:12px 52px; }
+    .product-circle { width:110px; }
+    .product-circle-img { width:96px;height:96px; }
+  }
+  @media (max-width:480px) {
+    .products-grid { grid-template-columns:1fr; }
+    .best-sellers-products .best-seller-card { width:100%; }
+    .quality-visual { grid-template-columns:1fr; }
+    .cart-drawer { width:100vw; }
+  }
+
+
+  /* ── INFINITE GRID (cursor reveal) ── */
+  .products-section,
+  .testimonials-section,
+  .faq-section,
+  .why-us-section,
+  .quality-section,
+  .trust-bar { position: relative; overflow: hidden; }
+
+  .products-section > *,
+  .testimonials-section > *,
+  .faq-section > *,
+  .why-us-section > *,
+  .quality-section > *,
+  .trust-bar > * { position: relative; z-index: 1; }
+
+  .products-section::after,
+  .testimonials-section::after,
+  .faq-section::after,
+  .why-us-section::after,
+  .quality-section::after,
+  .trust-bar::after { content:""; position:absolute; inset:0; pointer-events:none; z-index:0; }
+  .products-section::before,
+  .testimonials-section::before,
+  .faq-section::before,
+  .why-us-section::before,
+  .quality-section::before,
+  .trust-bar::before {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='%23000' stroke-opacity='0.45' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 40px 40px;
+    -webkit-mask-image: none;
+    mask-image: none;
+    opacity: 0;
+  }
+
+  /* ── CHECKOUT MODAL ── */
+  .co-overlay { position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:300;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px); }
+  .co-overlay.open { display:flex; }
+  .co-modal { background:white;border-radius:16px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;margin:16px;box-shadow:0 32px 80px rgba(0,0,0,0.25); }
+  .co-header { padding:24px 28px 0;display:flex;justify-content:space-between;align-items:center; }
+  .co-header h2 { font-family:var(--font-heading);font-size:22px;font-weight:700;color:var(--color-primary); }
+  .co-close { width:36px;height:36px;border-radius:50%;background:var(--color-muted);border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center; }
+  .co-body { padding:24px 28px; }
+  .co-step { display:none; }
+  .co-step.active { display:block; }
+  .co-field { margin-bottom:16px; }
+  .co-field label { display:block;font-size:13px;font-weight:600;color:var(--color-primary);margin-bottom:6px; }
+  .co-field input { width:100%;padding:12px 14px;border:1px solid var(--color-border);border-radius:8px;font-size:15px;font-family:var(--font-body);outline:none;transition:border-color 0.2s; }
+  .co-field input:focus { border-color:var(--color-accent); }
+  .co-order-summary { background:var(--color-surface);border-radius:10px;padding:16px;margin-bottom:20px; }
+  .co-order-summary h3 { font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-secondary);margin-bottom:12px; }
+  .co-order-item { display:flex;justify-content:space-between;font-size:14px;color:var(--color-primary);padding:4px 0; }
+  .co-order-total { display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:var(--color-primary);border-top:1px solid var(--color-border);margin-top:10px;padding-top:10px; }
+  .co-btn-primary { width:100%;padding:16px;border-radius:100px;border:none;background:var(--color-primary);color:white;font-size:15px;font-weight:700;cursor:pointer;transition:background 0.2s;margin-top:8px; }
+  .co-btn-primary:hover { background:var(--color-accent); }
+  .co-qr-wrap { text-align:center;padding:8px 0 20px; }
+  .co-qr-wrap img { width:220px;height:220px;object-fit:contain;border:2px solid var(--color-border);border-radius:12px;padding:8px; }
+  .co-qr-instructions { font-size:14px;color:var(--color-secondary);line-height:1.6;margin:16px 0;text-align:center; }
+  .co-qr-instructions strong { color:var(--color-primary); }
+  .co-amount { font-size:28px;font-weight:700;font-family:var(--font-heading);color:var(--color-primary);text-align:center;margin:12px 0; }
+  .co-paid-btn { width:100%;padding:18px;border-radius:100px;border:none;background:#16a34a;color:white;font-size:15px;font-weight:700;cursor:pointer;transition:background 0.2s;margin-top:8px; }
+  .co-paid-btn:hover { background:#15803d; }
+  .co-success { text-align:center;padding:20px 0; }
+  .co-success-icon { font-size:64px;margin-bottom:16px; }
+  .co-success h3 { font-family:var(--font-heading);font-size:24px;font-weight:700;color:var(--color-primary);margin-bottom:10px; }
+  .co-success p { font-size:15px;color:var(--color-secondary);line-height:1.7; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <img src="logo.png" alt="Body Pharma" style="height:48px;width:auto;display:block;">
+    </div>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#shop">Shop</a>
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button aria-label="Search">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button aria-label="Account">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="cart-btn" aria-label="Shopping cart" onclick="toggleCart()">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <video class="hero-video" autoplay muted loop playsinline style="z-index:0;">
+    <source src="97c62ec5a07a8fcd764a31a6abff99fe_1780913891_pddy7jyg.mp4" type="video/mp4">
+  </video>
+  <div class="hero-fade-bottom"></div>
+  <div class="hero-bg-shapes">
+    <div class="hero-circle"></div>
+    <div class="hero-circle"></div>
+    <div class="hero-circle"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-label"><span></span>Third-Party Verified · 99%+ Purity</div>
+      <h1 class="hero-title">Premium Research<br><em>Peptides</em> &<br>Compounds</h1>
+      <p class="hero-subtitle">Laboratory-grade peptides manufactured to the highest standards. Every batch rigorously tested for purity, potency, and consistency.</p>
+      <div class="hero-ctas">
+        <button class="hero-cta-primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+          Shop Now
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <button class="hero-cta-secondary" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+          Our Quality
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">99%+</div><div class="hero-stat-label">Purity</div></div>
+        <div><div class="hero-stat-num">50k+</div><div class="hero-stat-label">Customers</div></div>
+        <div><div class="hero-stat-num">13+</div><div class="hero-stat-label">Compounds</div></div>
+        <div><div class="hero-stat-num">48hr</div><div class="hero-stat-label">Shipping</div></div>
+      </div>
+    </div>
+    <div class="hero-visual" id="hero-visual">
+      <div class="hero-glow"></div>
+      <div class="hero-vials-showcase" id="hero-vials-showcase">
+        <!-- injected by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT CIRCLES SLIDER -->
+<div class="product-circles-section">
+  <div class="circles-slider-wrap">
+
+    <div class="product-circles-track-wrap" id="circles-track-wrap">
+      <div class="product-circles-track" id="product-circles-track">
+        <!-- injected by JS -->
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>SSL Secured Checkout</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Stripe & PayPal Accepted</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><line x1="22" y1="12" x2="2" y2="12"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>Fast 48hr Shipping</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Third-Party Lab Tested</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.22 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.06 6.06l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>24/7 Customer Support</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="shop">
+  <div class="section-inner">
+    <div class="section-header reveal" id="products">
+      <div class="section-label">Our Catalog</div>
+      <h2 class="section-title">Premium Research Compounds</h2>
+      <p class="section-subtitle">Every product manufactured under strict quality control with certificates of analysis available for every batch.</p>
+    </div>
+    <div class="products-grid" id="products-grid"></div>
+  </div>
+</section>
+
+
+<!-- EDITORIAL SECTION -->
+<section class="editorial-section">
+  <div class="editorial-grid">
+    <div class="editorial-panel">
+      <img src="lifestyle-woman.png" alt="NAD+ Longevity">
+      <div class="editorial-panel-overlay"></div>
+      <div class="editorial-panel-label">NAD+<br>Longevity</div>
+    </div>
+    <div class="editorial-panel">
+      <img src="pexels-kampus-8346687.jpg" alt="Twincretin Advanced">
+      <div class="editorial-panel-overlay"></div>
+      <div class="editorial-panel-label">Twincretin<br>Advanced</div>
+    </div>
+    <div class="editorial-panel">
+      <img src="lifestyle-man.png" alt="Glutathione Recovery">
+      <div class="editorial-panel-overlay"></div>
+      <div class="editorial-panel-label">Glutathione<br>Recovery</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us-section" id="about">
+  <div class="section-inner">
+    <div class="section-header centered reveal">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">The Body Pharma Difference</h2>
+      <p class="section-subtitle">We don't cut corners. Every decision we make — from raw materials to packaging — is guided by one principle: research-grade quality.</p>
+    </div>
+    <div class="why-us-grid">
+      <div class="why-card reveal reveal-delay-1"><div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="why-title">Third-Party Tested</div><p class="why-desc">Every batch independently verified by accredited laboratories. COA documents available on every product page — no exceptions.</p></div>
+      <div class="why-card reveal reveal-delay-2"><div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="why-title">Fast 48hr Shipping</div><p class="why-desc">Orders placed before 2 PM ship same day. Discreet, climate-controlled packaging ensures your compounds arrive in perfect condition.</p></div>
+      <div class="why-card reveal reveal-delay-3"><div class="why-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div class="why-title">99%+ Purity Standards</div><p class="why-desc">We source only pharmaceutical-grade precursors. Our manufacturing processes consistently achieve purity levels above 99%.</p></div>
+      <div class="why-card reveal reveal-delay-1"><div class="why-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div class="why-title">Trusted by Researchers</div><p class="why-desc">Over 50,000 researchers and institutions trust Body Pharma for consistent, reliable compounds that meet their exacting standards.</p></div>
+      <div class="why-card reveal reveal-delay-2"><div class="why-icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div><div class="why-title">Secure Checkout</div><p class="why-desc">256-bit SSL encryption, PCI-DSS compliant payment processing, and multiple trusted payment methods including Apple Pay and Google Pay.</p></div>
+      <div class="why-card reveal reveal-delay-3"><div class="why-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="why-title">Expert Support</div><p class="why-desc">Our team of research specialists is available 24/7 to answer technical questions, assist with protocols, and resolve any issues.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEST SELLERS -->
+<div class="best-sellers-section">
+  <div class="best-sellers-inner">
+    <div>
+      <div class="best-sellers-label">Top Sellers</div>
+      <h2 class="best-sellers-title">Researcher Favorites</h2>
+      <p class="best-sellers-desc">Our most trusted compounds, consistently reordered by research professionals worldwide. Backed by rigorous testing and unmatched purity.</p>
+      <button class="hero-cta-primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">View All Products <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    </div>
+    <div class="best-sellers-products" id="best-sellers-grid"></div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="section-inner">
+    <div class="section-header centered reveal">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title">What Researchers Say</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="testimonial-text">"The purity and consistency of Body Pharma's NAD+ has been exceptional across every order. COA documents are always batch-accurate and readily available."</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">D</div><div><div class="testimonial-name">Dr. Marcus Webb</div><div class="testimonial-role">Longevity Research, Stanford</div></div></div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="testimonial-text">"Switched from three different suppliers to Body Pharma. The difference in quality is immediately apparent. Shipping is fast, packaging flawless, support incredible."</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">S</div><div><div class="testimonial-name">Sarah Chen, PhD</div><div class="testimonial-role">Peptide Research Institute</div></div></div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-3">
+        <div class="testimonial-stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="testimonial-text">"We've sourced CJC-1295 and Ipamorelin from Body Pharma for two years. Batch-to-batch consistency is unmatched. This is the gold standard for peptide supply."</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">R</div><div><div class="testimonial-name">Robert Kimura</div><div class="testimonial-role">BioScience Labs, Tokyo</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY -->
+<section class="quality-section">
+  <div class="quality-inner">
+    <div>
+      <div class="section-label">Our Process</div>
+      <h2 class="section-title">Research-Grade Quality Control</h2>
+      <p class="section-subtitle">From sourcing to your door, every step is designed to preserve integrity and guarantee purity.</p>
+      <div class="quality-steps">
+        <div class="quality-step reveal"><div class="quality-step-num">1</div><div><div class="quality-step-title">Pharmaceutical-Grade Sourcing</div><p class="quality-step-desc">We source only from certified suppliers with full traceability, ensuring the highest quality raw materials.</p></div></div>
+        <div class="quality-step reveal reveal-delay-1"><div class="quality-step-num">2</div><div><div class="quality-step-title">GMP Manufacturing</div><p class="quality-step-desc">All compounds produced in ISO-certified facilities under Good Manufacturing Practice protocols.</p></div></div>
+        <div class="quality-step reveal reveal-delay-2"><div class="quality-step-num">3</div><div><div class="quality-step-title">Independent Lab Verification</div><p class="quality-step-desc">Every batch independently tested by third-party accredited laboratories using HPLC and mass spectrometry.</p></div></div>
+        <div class="quality-step reveal reveal-delay-3"><div class="quality-step-num">4</div><div><div class="quality-step-title">Secure Packaging & Delivery</div><p class="quality-step-desc">Climate-controlled, discreet packaging with temperature indicators ensures compounds arrive in optimal condition.</p></div></div>
+      </div>
+    </div>
+    <div class="quality-visual reveal">
+      <div class="quality-stat-card"><div class="quality-stat-num">99.4%</div><div class="quality-stat-label">Average Purity Across All Batches</div></div>
+      <div class="quality-stat-card"><div class="quality-stat-num">100%</div><div class="quality-stat-label">Batches with COA Documentation</div></div>
+      <div class="quality-stat-card"><div class="quality-stat-num">48hr</div><div class="quality-stat-label">Average Fulfillment Time</div></div>
+      <div class="quality-stat-card"><div class="quality-stat-num">50k+</div><div class="quality-stat-label">Satisfied Researchers Worldwide</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-inner">
+    <div class="section-header centered reveal">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Are your products for human consumption?<svg class="faq-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-answer">All Body Pharma products are labeled "For Research Use Only" and "Not for Human Consumption." They are intended solely for laboratory and in-vitro research applications by qualified professionals.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">How do I verify product purity?<svg class="faq-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-answer">Every batch includes a Certificate of Analysis (COA) from an independent, accredited third-party laboratory. COA documents are available directly on each product page and provided with every shipment, detailing purity levels, testing methodology, and batch-specific results.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What is your shipping policy?<svg class="faq-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-answer">Orders placed before 2 PM EST ship same day. We offer standard (3-5 business days), expedited (2 business days), and overnight shipping. All orders ship in discreet, unmarked packaging with temperature indicators. International shipping available to select countries.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">How should peptides be stored?<svg class="faq-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-answer">Lyophilized peptides should be stored at -20°C for long-term stability. Reconstituted peptides should be stored at 4°C and used within 30 days. Avoid repeated freeze-thaw cycles. Specific storage recommendations are included with each product.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What payment methods do you accept?<svg class="faq-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-answer">We accept all major credit cards (Visa, Mastercard, Amex), PayPal, Apple Pay, Google Pay, and bank transfers for orders over $500. All transactions are secured with 256-bit SSL encryption and are PCI-DSS compliant.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Do you offer bulk pricing for research institutions?<svg class="faq-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-answer">Yes. We offer institutional pricing for universities, research hospitals, and corporate laboratories. Volume discounts begin at orders over $1,000. Contact our research team at research@bodypharma.com for a custom quote and to set up a net-30 account.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-section">
+  <div class="newsletter-inner">
+    <h2 class="newsletter-title">Stay Ahead of the Research</h2>
+    <p class="newsletter-subtitle">New compounds, batch notifications, research insights, and exclusive offers — delivered to your inbox.</p>
+    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+      <input type="email" class="newsletter-input" placeholder="Enter your email address" required aria-label="Email address">
+      <button type="submit" class="newsletter-submit">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer" id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo"><img src="logo.png" alt="Body Pharma" style="height:72px;width:auto;display:block;filter:brightness(0) invert(1);"></div>
+      <p class="footer-brand-desc">Premium research peptides and compounds manufactured to the highest standards. Science. Quality. Results.</p>
+      <div class="footer-social">
+        <div class="social-btn"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></div>
+        <div class="social-btn"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+        <div class="social-btn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+      </div>
+    </div>
+    <div><div class="footer-col-title">Shop</div><div class="footer-links"><a href="#shop">All Products</a><a href="#shop">Peptides</a><a href="#shop">Growth Factors</a><a href="#shop">Nootropics</a><a href="#shop">Bundles</a><a href="#shop">New Arrivals</a></div></div>
+    <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="#about">About Us</a><a href="#about">Quality Standards</a><a href="#about">Lab Testing</a><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="#">Blog</a></div></div>
+    <div><div class="footer-col-title">Policies</div><div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Shipping Policy</a><a href="#">Return Policy</a><a href="#">Research Disclaimer</a><a href="#">COA Documents</a></div></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-text">© 2026 Body Pharma. All rights reserved. For Research Use Only.</div>
+    <div class="footer-bottom-text">Not for human consumption. Not FDA evaluated.</div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Shopping cart">
+  <div class="cart-header"><h2>Your Cart</h2><button class="cart-close" onclick="toggleCart()" aria-label="Close cart"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+  <div class="cart-items" id="cart-items-list"></div>
+  <div class="cart-footer" id="cart-footer"></div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleModalOverlayClick(event)">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="modal-inner" id="modal-inner"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-icon"><svg width="10" height="10" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+  <span id="toast-msg">Added to cart!</span>
+</div>
+
+<script>
+// ── SVG VIAL GENERATOR ──
+// Creates a realistic pharmaceutical vial SVG matching Body Pharma branding
+function makeVial(opts) {
+  const {
+    capColor = '#3a9db0',
+    labelColor = capColor,
+    line1 = '', line2 = '', line3 = '', line4 = '',
+    bannerColor = capColor,
+    width = 130, height = 170
+  } = opts;
+
+  // Derived
+  const cx = width / 2;
+  const capDarker = shadeColor(capColor, -20);
+  const bannerDarker = shadeColor(bannerColor, -15);
+
+  return `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
+  <defs>
+    <linearGradient id="glassGrad_${line1.replace(/\s/g,'')}" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#d8e8f0;stop-opacity:1"/>
+      <stop offset="18%" style="stop-color:#f4f9fc;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#ffffff;stop-opacity:1"/>
+      <stop offset="80%" style="stop-color:#eaf3f8;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#c8dce8;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="capGrad_${line1.replace(/\s/g,'')}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:${lightenColor(capColor, 30)};stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:${capColor};stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:${capDarker};stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="metalGrad_${line1.replace(/\s/g,'')}" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8a9aaa;stop-opacity:1"/>
+      <stop offset="35%" style="stop-color:#c8d4dc;stop-opacity:1"/>
+      <stop offset="60%" style="stop-color:#e4ecf0;stop-opacity:1"/>
+      <stop offset="85%" style="stop-color:#b0bec8;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#8a9aaa;stop-opacity:1"/>
+    </linearGradient>
+    <clipPath id="vialClip_${line1.replace(/\s/g,'')}">
+      <rect x="15" y="22" width="${width-30}" height="${height-26}" rx="8" ry="8"/>
+    </clipPath>
+  </defs>
+
+  <!-- Glass body -->
+  <rect x="15" y="22" width="${width-30}" height="${height-26}" rx="8" ry="8"
+    fill="url(#glassGrad_${line1.replace(/\s/g,'')})"
+    stroke="#b8ccda" stroke-width="0.8"/>
+
+  <!-- Glass shine left -->
+  <rect x="18" y="26" width="5" height="${height-36}" rx="2" fill="white" opacity="0.5"/>
+
+  <!-- White label area -->
+  <rect x="17" y="44" width="${width-34}" height="${height-70}" rx="3" ry="3"
+    fill="white" stroke="#e0e8ee" stroke-width="0.5"
+    clip-path="url(#vialClip_${line1.replace(/\s/g,'')})"/>
+
+  <!-- Gold separator lines on label -->
+  <line x1="17" y1="62" x2="${width-17}" y2="62" stroke="#c9a84c" stroke-width="0.7" opacity="0.6"/>
+  <line x1="17" y1="${height-44}" x2="${width-17}" y2="${height-44}" stroke="#c9a84c" stroke-width="0.7" opacity="0.6"/>
+
+  <!-- BP Logo area -->
+  <text x="${cx}" y="57" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="11" fill="#0B6E8A" letter-spacing="-0.5">BP</text>
+  <text x="${cx}" y="64.5" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="4.5" fill="#1C1917" letter-spacing="1.5">BODY PHARMA</text>
+  <text x="${cx}" y="70" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.2" fill="#888" letter-spacing="0.8">SCIENCE · QUALITY · RESULTS</text>
+
+  <!-- Product name line 1 -->
+  <text x="${cx}" y="${height-58}" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="${line1.length > 10 ? 8.5 : 10}" fill="#1C1917">${line1}</text>
+  <!-- Product name line 2 (dose) -->
+  <text x="${cx}" y="${height-47}" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="8" fill="${labelColor}">${line2}</text>
+  <!-- Volume -->
+  <text x="${cx}" y="${height-38}" text-anchor="middle" font-family="Arial,sans-serif" font-size="6.5" fill="${labelColor}">${line3}</text>
+  <!-- Sterile Vial -->
+  <text x="${cx}" y="${height-30}" text-anchor="middle" font-family="Arial,sans-serif" font-size="6" fill="#555">${line4}</text>
+
+  <!-- Bottom banner -->
+  <rect x="15" y="${height-26}" width="${width-30}" height="20" rx="0" ry="0"
+    fill="${bannerColor}" clip-path="url(#vialClip_${line1.replace(/\s/g,'')})"/>
+  <rect x="15" y="${height-26}" width="${width-30}" height="10"
+    fill="${bannerDarker}" clip-path="url(#vialClip_${line1.replace(/\s/g,'')})"/>
+  <text x="${cx}" y="${height-18}" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="3.8" fill="white" letter-spacing="0.2">FOR RESEARCH USE ONLY</text>
+  <text x="${cx}" y="${height-11}" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.5" fill="rgba(255,255,255,0.85)" letter-spacing="0.2">NOT FOR HUMAN CONSUMPTION</text>
+
+  <!-- Metal collar -->
+  <rect x="18" y="18" width="${width-36}" height="8" rx="1"
+    fill="url(#metalGrad_${line1.replace(/\s/g,'')})" stroke="#9aaab4" stroke-width="0.5"/>
+
+  <!-- Cap -->
+  <rect x="22" y="1" width="${width-44}" height="20" rx="5" ry="5"
+    fill="url(#capGrad_${line1.replace(/\s/g,'')})" stroke="${capDarker}" stroke-width="0.6"/>
+  <!-- Cap highlight -->
+  <rect x="26" y="4" width="${width-64}" height="6" rx="3"
+    fill="${lightenColor(capColor, 45)}" opacity="0.5"/>
+</svg>`;
+}
+
+function shadeColor(hex, pct) {
+  const num = parseInt(hex.replace('#',''), 16);
+  const r = Math.min(255, Math.max(0, (num >> 16) + pct));
+  const g = Math.min(255, Math.max(0, ((num >> 8) & 0xff) + pct));
+  const b = Math.min(255, Math.max(0, (num & 0xff) + pct));
+  return '#' + ((1<<24)|(r<<16)|(g<<8)|b).toString(16).slice(1);
+}
+function lightenColor(hex, pct) { return shadeColor(hex, pct); }
+
+// ── PRODUCT DATA ──
+const PRODUCTS = [
+  { id:1, img:'bac-water-3ml-nobg.png', name:'Bac Water 3 mL', variant:'3 mL · Sterile Vial', price:14.99, badge:null, bestSeller:false,
+    capColor:'#3a9db0', labelColor:'#3a9db0', bannerColor:'#3a9db0',
+    l1:'Bac Water', l2:'3 mL', l3:'', l4:'Sterile Vial',
+    desc:'Bacteriostatic water for reconstituting lyophilized peptides. Sterile, preservative-grade formulation ensures safe, stable reconstitution.',
+    benefits:['Preservative-grade formulation','Sterile 3 mL vial','Extended peptide stability'] },
+  { id:2, img:'bac-water-10ml-nobg.png', name:'Bac Water 10 mL', variant:'10 mL · Sterile Vial', price:19.99, badge:'Popular', bestSeller:false,
+    capColor:'#3a9db0', labelColor:'#3a9db0', bannerColor:'#3a9db0',
+    l1:'Bac Water', l2:'10 mL', l3:'3 mL', l4:'Sterile Vial',
+    desc:'Larger volume bacteriostatic water ideal for multi-use applications. Maintains sterility across repeated draws.',
+    benefits:['10 mL volume for multi-use','Bacteriostatic preservative','Pharmaceutical-grade'] },
+  { id:3, img:'mots-c-10mg-nobg.png', name:'MOTS-C 10 mg', variant:'10 mg · 3 mL · Sterile Vial', price:74.99, badge:'Best Seller', bestSeller:true,
+    capColor:'#2a4a8a', labelColor:'#2a4a8a', bannerColor:'#2a4a8a',
+    l1:'MOTS-C', l2:'10 mg', l3:'3 mL', l4:'Sterile Vial',
+    desc:'Mitochondrial-derived peptide with metabolic regulatory properties. Research suggests roles in energy metabolism and cellular homeostasis.',
+    benefits:['Mitochondrial-derived peptide','Metabolic regulation research','High-purity lyophilized'] },
+  { id:4, img:'mots-c-40mg-nobg.png', name:'MOTS-C 40 mg', variant:'40 mg · 3 mL · Sterile Vial', price:239.99, badge:null, bestSeller:false,
+    capColor:'#2a4a8a', labelColor:'#2a4a8a', bannerColor:'#2a4a8a',
+    l1:'MOTS-C', l2:'40 mg', l3:'3 mL', l4:'Sterile Vial',
+    desc:'High-concentration MOTS-C for extended research protocols. Consistent 99%+ purity across all batches.',
+    benefits:['40 mg high-concentration','Extended research protocols','COA included'] },
+  { id:5, img:'mic-lipo-nobg.png', name:'MIC Lipo C + B12', variant:'10 mg · 3 mL · Sterile Vial', price:49.99, badge:null, bestSeller:false,
+    capColor:'#3a9db0', labelColor:'#3a9db0', bannerColor:'#3a9db0',
+    l1:'MIC', l2:'10 mg', l3:'Lipo C + B12 · 3 mL', l4:'Sterile Vial',
+    desc:'Methionine, Inositol, Choline combined with Vitamin C and B12. Comprehensive lipotropic compound for metabolic research.',
+    benefits:['Combined lipotropic formula','Vitamin C & B12 included','Research-grade purity'] },
+  { id:6, img:'twincretin-40mg-nobg.png', name:'Twincretin 40 mg', variant:'40 mg · 3 mL · Sterile Vial', price:349.99, badge:'New', bestSeller:true,
+    capColor:'#6b3fa0', labelColor:'#6b3fa0', bannerColor:'#6b3fa0',
+    l1:'Twincretin', l2:'40 mg', l3:'3 mL', l4:'Sterile Vial',
+    desc:'Dual incretin receptor agonist compound for advanced metabolic pathway research. Exceptional purity for reliable experimental outcomes.',
+    benefits:['Dual receptor agonist','Advanced metabolic research','Pharmaceutical-grade synthesis'] },
+  { id:7, img:'ghk-cu-100mg-nobg.png', name:'GHK-CU 100 mg', variant:'100 mg · 3 mL · Sterile Vial', price:89.99, badge:'Best Seller', bestSeller:true,
+    capColor:'#3a9db0', labelColor:'#3a9db0', bannerColor:'#3a9db0',
+    l1:'GHK-CU', l2:'100 mg', l3:'3 mL', l4:'Sterile Vial',
+    desc:'Copper peptide complex with established research applications in tissue remodeling, angiogenesis, and cellular repair mechanisms.',
+    benefits:['Copper-bound tripeptide','Tissue remodeling research','High solubility formulation'] },
+  { id:8, img:'tesamorelin-10mg-nobg.png', name:'Tesamorelin 10 mg', variant:'10 mg · 3 mL · Sterile Vial', price:129.99, badge:null, bestSeller:false,
+    capColor:'#c4607a', labelColor:'#c4607a', bannerColor:'#c4607a',
+    l1:'Tesamorelin', l2:'10 mg', l3:'3 mL', l4:'Sterile Vial',
+    desc:'Synthetic GHRH analog with well-characterized pharmacokinetics. Extensively studied in growth hormone secretion and body composition research.',
+    benefits:['Synthetic GHRH analog','Well-documented profile','Research-grade lyophilized'] },
+  { id:9, img:'cjc-ipamorelin-nobg.png', name:'CJC-1295 + Ipamorelin', variant:'5 mg + 5 mg · 3 mL · Without DAC', price:119.99, badge:'Popular', bestSeller:true,
+    capColor:'#d06828', labelColor:'#d06828', bannerColor:'#d06828',
+    l1:'CJC-1295 + Ipa', l2:'5 mg + 5 mg', l3:'Without DAC · 3 mL', l4:'Sterile Vial',
+    desc:'Combined GHRH/GHRP compound pair. Synergistic research profile makes this one of our most-ordered combinations.',
+    benefits:['Without DAC formulation','Synergistic compound pair','5 mg + 5 mg combination'] },
+  { id:10, img:'nad-1000mg-nobg.png', name:'NAD+ 1000 mg', variant:'1000 mg · 3 mL · Sterile Vial', price:179.99, badge:'Best Seller', bestSeller:true,
+    capColor:'#2e8050', labelColor:'#2e8050', bannerColor:'#2e8050',
+    l1:'NAD+', l2:'1000 mg', l3:'3 mL', l4:'Sterile Vial',
+    desc:'High-potency nicotinamide adenine dinucleotide for cellular energy and longevity pathway research. Exceptional batch-to-batch consistency.',
+    benefits:['1000 mg high potency','Cellular energy research','Longevity pathway studies'] },
+  { id:11, img:'triple-g-10mg-nobg.png', name:'Triple G 10 mg', variant:'10 mg · 3 mL · Sterile Vial', price:199.99, badge:null, bestSeller:false,
+    capColor:'#8b1a1a', labelColor:'#8b1a1a', bannerColor:'#8b1a1a',
+    l1:'TRIPLE G', l2:'10 mg', l3:'3 mL', l4:'Sterile Vial',
+    desc:'Triple GLP-1 receptor modulator for advanced incretin pathway research. Precise synthesis for reliable experimental reproducibility.',
+    benefits:['Triple receptor modulator','GLP-1 pathway research','Precise mass accuracy'] },
+  { id:12, img:'triple-g-30mg-nobg.png', name:'Triple G 30 mg', variant:'30 mg · 3 mL · Sterile Vial', price:449.99, badge:null, bestSeller:false,
+    capColor:'#8b1a1a', labelColor:'#8b1a1a', bannerColor:'#8b1a1a',
+    l1:'TRIPLE G', l2:'30 mg', l3:'3 mL', l4:'Sterile Vial',
+    desc:'High-concentration Triple G for extended research programs requiring consistent, large-quantity access to GLP receptor modulators.',
+    benefits:['30 mg high-concentration','Extended research access','Consistent purity guarantee'] },
+  { id:13, img:'glutathione-1500mg-nobg.png', name:'Glutathione 1500 mg', variant:'1500 mg · 3 mL · Sterile Vial', price:94.99, badge:'Popular', bestSeller:false,
+    capColor:'#2e8050', labelColor:'#2e8050', bannerColor:'#2e8050',
+    l1:'Glutathione', l2:'1500 mg', l3:'3 mL', l4:'Sterile Vial',
+    desc:'Master antioxidant tripeptide in ultra-high concentration. Research applications in oxidative stress, immune modulation, and cellular detoxification.',
+    benefits:['1500 mg ultra-high concentration','Master antioxidant research','Oxidative stress studies'] }
+];
+
+function getVialSVG(p, w, h, useOriginal) {
+  if (p.img) {
+    const imgH = h || 170;
+    const imgW = w || 130;
+    const src = useOriginal ? p.img.replace('-nobg','') : p.img;
+    return '<img src="' + src + '" alt="' + p.name + '" style="height:' + imgH + 'px;width:' + imgW + 'px;object-fit:contain;" loading="lazy">';
+  }
+  return makeVial({ capColor:p.capColor, labelColor:p.labelColor, bannerColor:p.bannerColor,
+    line1:p.l1, line2:p.l2, line3:p.l3, line4:p.l4, width:w||130, height:h||170 });
+}
+
+// ── HERO VIALS ──
+function renderHeroVials() {
+  const showcase = document.getElementById('hero-vials-showcase');
+  if (!showcase) return;
+  const featured = [
+    { cls:'side-left-2', pid:10 },
+    { cls:'side-left-1', pid:3 },
+    { cls:'main', pid:9 },
+    { cls:'side-right-1', pid:6 },
+    { cls:'side-right-2', pid:7 },
+  ];
+  showcase.innerHTML = featured.map(f => {
+    const p = PRODUCTS.find(x => x.id === f.pid);
+    const isMain = f.cls === 'main';
+    const svg = getVialSVG(p, isMain ? 140 : 120, isMain ? 185 : 158);
+    return `<div class="hero-vial-wrap ${f.cls}">${svg}</div>`;
+  }).join('');
+}
+
+// ── PRODUCT CIRCLES ──
+function renderCircles() {
+  const track = document.getElementById('product-circles-track');
+  if (!track) return;
+  const circleItems = PRODUCTS.map(p => {
+    const svg = getVialSVG(p, 80, 104);
+    return `<div class="product-circle" onclick="openModal(${p.id})">
+      <div class="product-circle-img">${svg}</div>
+      <div class="product-circle-name">${p.name}</div>
+    </div>`;
+  }).join('');
+  track.innerHTML = circleItems + circleItems;
+}
+
+// ── CIRCLES SLIDER ──
+let circleOffset = 0;
+const CIRCLE_ITEM_W = 164; // 136px + 28px gap
+
+function slideCircles(dir) {
+  const track = document.getElementById('product-circles-track');
+  const wrap = document.getElementById('circles-track-wrap');
+  if (!track || !wrap) return;
+  const maxOffset = (PRODUCTS.length * CIRCLE_ITEM_W) - wrap.clientWidth + 120;
+  circleOffset = Math.max(0, Math.min(maxOffset, circleOffset + dir * CIRCLE_ITEM_W * 3));
+  track.style.transform = `translateX(-${circleOffset}px)`;
+}
+
+// Drag-to-scroll
+(function initDrag() {
+  let startX = 0, startOff = 0, isDrag = false;
+  document.addEventListener('DOMContentLoaded', () => {
+    const wrap = document.getElementById('circles-track-wrap');
+    const track = document.getElementById('product-circles-track');
+    if (!wrap || !track) return;
+    wrap.addEventListener('mousedown', e => {
+      isDrag = true; startX = e.clientX; startOff = circleOffset;
+      wrap.classList.add('dragging');
+    });
+    document.addEventListener('mousemove', e => {
+      if (!isDrag) return;
+      const dx = startX - e.clientX;
+      const maxOff = (PRODUCTS.length * CIRCLE_ITEM_W) - wrap.clientWidth + 120;
+      circleOffset = Math.max(0, Math.min(maxOff, startOff + dx));
+      track.style.transform = `translateX(-${circleOffset}px)`;
+      track.style.transition = 'none';
+    });
+    document.addEventListener('mouseup', () => {
+      if (isDrag) { isDrag = false; wrap.classList.remove('dragging'); track.style.transition = ''; }
+    });
+    wrap.addEventListener('touchstart', e => { startX = e.touches[0].clientX; startOff = circleOffset; }, {passive:true});
+    wrap.addEventListener('touchmove', e => {
+      const dx = startX - e.touches[0].clientX;
+      const maxOff = (PRODUCTS.length * CIRCLE_ITEM_W) - wrap.clientWidth + 120;
+      circleOffset = Math.max(0, Math.min(maxOff, startOff + dx));
+      track.style.transform = `translateX(-${circleOffset}px)`;
+      track.style.transition = 'none';
+    }, {passive:true});
+    wrap.addEventListener('touchend', () => { track.style.transition = ''; });
+  });
+})();
+
+// ── PRODUCTS GRID ──
+function renderProducts() {
+  const grid = document.getElementById('products-grid');
+  if (!grid) return;
+  grid.innerHTML = PRODUCTS.map((p, i) => {
+    const svg = getVialSVG(p, 110, 145, true);
+    return `<div class="product-card reveal reveal-delay-${(i%4)+1}" onclick="openModal(${p.id})">
+      ${p.badge ? `<div class="product-card-badge">${p.badge}</div>` : ''}
+      <div class="product-card-img">${svg}</div>
+      <div class="product-card-body">
+        <div class="product-card-name">${p.name}</div>
+        <div class="product-card-desc">${p.variant}</div>
+        <div class="product-card-footer">
+          <div class="product-card-price">$${p.price.toFixed(2)} <span>/ vial</span></div>
+          <button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})" aria-label="Add ${p.name} to cart">Add to Cart</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── BEST SELLERS ──
+function renderBestSellers() {
+  const grid = document.getElementById('best-sellers-grid');
+  if (!grid) return;
+  const bs = PRODUCTS.filter(p => p.bestSeller).slice(0,3);
+  grid.innerHTML = bs.map(p => {
+    const svg = getVialSVG(p, 90, 118, true);
+    return `<div class="best-seller-card" onclick="openModal(${p.id})">${svg}<div class="best-seller-name">${p.name}</div><div class="best-seller-price">$${p.price.toFixed(2)}</div></div>`;
+  }).join('');
+}
+
+// ── CART ──
+let cart = [];
+let modalQty = 1;
+let modalProduct = null;
+
+function toggleCart() {
+  const ov = document.getElementById('cart-overlay');
+  const dr = document.getElementById('cart-drawer');
+  const isOpen = dr.classList.contains('open');
+  ov.classList.toggle('open', !isOpen);
+  dr.classList.toggle('open', !isOpen);
+  if (!isOpen) renderCart();
+}
+
+function addToCart(id, qty=1) {
+  const p = PRODUCTS.find(x => x.id === id);
+  const ex = cart.find(x => x.id === id);
+  if (ex) ex.qty += qty; else cart.push({...p, qty});
+  updateCartCount();
+  showToast(`${p.name} added to cart`);
+}
+
+function updateCartCount() {
+  document.getElementById('cart-count').textContent = cart.reduce((s,i) => s+i.qty, 0);
+}
+
+function renderCart() {
+  const list = document.getElementById('cart-items-list');
+  const footer = document.getElementById('cart-footer');
+  if (cart.length === 0) {
+    list.innerHTML = `<div class="cart-empty"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><p>Your cart is empty</p></div>`;
+    footer.innerHTML = ''; return;
+  }
+  list.innerHTML = cart.map(item => {
+    const svg = getVialSVG(item, 52, 68);
+    return `<div class="cart-item">
+      <div class="cart-item-img">${svg}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-variant">${item.variant}</div>
+        <div class="cart-item-bottom">
+          <div class="qty-control">
+            <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+            <span class="qty-num">${item.qty}</span>
+            <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+          </div>
+          <div class="cart-item-price">$${(item.price*item.qty).toFixed(2)}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  const subtotal = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  const shipping = subtotal > 150 ? 0 : 12.99;
+  footer.innerHTML = `
+    <div class="cart-subtotal"><span class="cart-subtotal-label">Subtotal</span><span class="cart-subtotal-val">$${subtotal.toFixed(2)}</span></div>
+    <div class="cart-subtotal"><span class="cart-subtotal-label">Shipping</span><span class="cart-subtotal-val">${shipping===0?'FREE':'$'+shipping.toFixed(2)}</span></div>
+    <div class="cart-total"><span class="cart-total-label">Total</span><span class="cart-total-val">$${(subtotal+shipping).toFixed(2)}</span></div>
+    <button class="checkout-btn" onclick="handleCheckout()">Proceed to Checkout</button>`;
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(x => x.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) cart = cart.filter(x => x.id !== id);
+  updateCartCount(); renderCart();
+}
+
+// ── MODAL ──
+function openModal(id) {
+  modalProduct = PRODUCTS.find(p => p.id === id);
+  modalQty = 1;
+  renderModal();
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleModalOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+function renderModal() {
+  if (!modalProduct) return;
+  const p = modalProduct;
+  const svg = getVialSVG(p, 160, 210, true);
+  document.getElementById('modal-inner').innerHTML = `
+    <div class="modal-img-side">${svg}</div>
+    <div class="modal-info">
+      <div class="modal-product-label">Body Pharma · Research Grade</div>
+      <div class="modal-product-name">${p.name}</div>
+      <div class="modal-product-variant">${p.variant}</div>
+      <div class="modal-product-price">$${p.price.toFixed(2)}</div>
+      <p class="modal-product-desc">${p.desc}</p>
+      <ul style="font-size:13px;color:var(--color-secondary);line-height:1.7;padding-left:18px;margin-bottom:24px;">
+        ${p.benefits.map(b=>`<li>${b}</li>`).join('')}
+      </ul>
+      <div class="modal-qty-row">
+        <div class="modal-qty">
+          <button class="modal-qty-btn" onclick="changeModalQty(-1)">−</button>
+          <span class="modal-qty-num" id="modal-qty-display">${modalQty}</span>
+          <button class="modal-qty-btn" onclick="changeModalQty(1)">+</button>
+        </div>
+        <button class="modal-add-btn" id="modal-add-btn" onclick="addToCart(${p.id},${modalQty});closeModal();">Add to Cart — $${(p.price*modalQty).toFixed(2)}</button>
+      </div>
+      <div class="modal-badges">
+        <div class="modal-badge"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Lab Tested</div>
+        <div class="modal-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>COA Included</div>
+        <div class="modal-badge"><svg viewBox="0 0 24 24"><line x1="22" y1="12" x2="2" y2="12"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>Fast Ship</div>
+      </div>
+    </div>`;
+}
+function changeModalQty(delta) {
+  modalQty = Math.max(1, modalQty + delta);
+  const d = document.getElementById('modal-qty-display');
+  if (d) d.textContent = modalQty;
+  const btn = document.getElementById('modal-add-btn');
+  if (btn && modalProduct) {
+    btn.textContent = `Add to Cart — $${(modalProduct.price*modalQty).toFixed(2)}`;
+    btn.onclick = () => { addToCart(modalProduct.id, modalQty); closeModal(); };
+  }
+}
+
+// ── FAQ ──
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+function handleNewsletter(e) { e.preventDefault(); showToast('Subscribed! Welcome to Body Pharma.'); e.target.reset(); }
+
+function handleCheckout() {
+  if (cart.length === 0) { showToast('Your cart is empty.'); return; }
+  toggleCart();
+  // Populate summary
+  const subtotal = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  const shipping = subtotal > 150 ? 0 : 12.99;
+  const total = subtotal + shipping;
+  const summary = document.getElementById('coSummary');
+  summary.innerHTML = '<h3>Order Summary</h3>' +
+    cart.map(i => `<div class="co-order-item"><span>${i.name} x${i.qty}</span><span>$${(i.price*i.qty).toFixed(2)}</span></div>`).join('') +
+    `<div class="co-order-item"><span>Shipping</span><span>${shipping===0?'FREE':'$'+shipping.toFixed(2)}</span></div>` +
+    `<div class="co-order-total"><span>Total</span><span>$${total.toFixed(2)}</span></div>`;
+  document.getElementById('coAmount').textContent = '$' + total.toFixed(2);
+  document.getElementById('coOverlay').classList.add('open');
+  document.getElementById('coTitle').textContent = 'Your Information';
+  document.getElementById('coStep1').classList.add('active');
+  document.getElementById('coStep2').classList.remove('active');
+  document.getElementById('coStep3').classList.remove('active');
+}
+
+function closeCheckout() {
+  document.getElementById('coOverlay').classList.remove('open');
+}
+
+function goToPayment() {
+  const name = document.getElementById('coName').value.trim();
+  const phone = document.getElementById('coPhone').value.trim();
+  const email = document.getElementById('coEmail').value.trim();
+  if (!name || !phone || !email) { alert('Please fill in all fields.'); return; }
+  if (!/\S+@\S+\.\S+/.test(email)) { alert('Please enter a valid email address.'); return; }
+  document.getElementById('coStep1').classList.remove('active');
+  document.getElementById('coStep2').classList.add('active');
+  document.getElementById('coTitle').textContent = 'Pay via Zelle';
+}
+
+function confirmPayment() {
+  const name = document.getElementById('coName').value.trim();
+  const phone = document.getElementById('coPhone').value.trim();
+  const email = document.getElementById('coEmail').value.trim();
+  const subtotal = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  const shipping = subtotal > 150 ? 0 : 12.99;
+  const total = (subtotal + shipping).toFixed(2);
+  const items = cart.map(i => i.name + ' x' + i.qty + ' ($' + (i.price*i.qty).toFixed(2) + ')').join(', ');
+
+  // Send to FormSubmit — owner notification
+  const fd = new FormData();
+  fd.append('_subject', 'New Body Pharma Order - Payment Confirmed');
+  fd.append('Name', name);
+  fd.append('Phone', phone);
+  fd.append('Email', email);
+  fd.append('Items Ordered', items);
+  fd.append('Order Total', '$' + total);
+  fd.append('_autoresponse', 'Thank you ' + name + ' for your order with Body Pharma! We have received your Zelle payment confirmation. Your order (' + items + ') totaling $' + total + ' is being processed and will ship within 48 hours. If you have any questions, reply to this email. — The Body Pharma Team');
+  fd.append('_template', 'box');
+  fd.append('_captcha', 'false');
+
+  fetch('https://formsubmit.co/irhernandez11@hotmail.com', { method:'POST', body:fd })
+    .then(() => {})
+    .catch(() => {});
+
+  document.getElementById('coConfirmEmail').textContent = email;
+  document.getElementById('coStep2').classList.remove('active');
+  document.getElementById('coStep3').classList.add('active');
+  document.getElementById('coTitle').textContent = 'Order Confirmed!';
+  cart = [];
+  updateCartCount();
+}
+
+
+// ── SCROLL REVEAL ──
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+function observeReveal() { document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el)); }
+
+// ── INIT ──
+renderHeroVials();
+renderCircles();
+renderProducts();
+renderBestSellers();
+setTimeout(observeReveal, 150);
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeModal();
+    if (document.getElementById('cart-drawer').classList.contains('open')) toggleCart();
+  }
+});
+</script>
+
+
+
+
+
+
+<script>
+(function(){
+  var sels = ['.products-section','.testimonials-section','.faq-section',
+              '.why-us-section','.quality-section','.trust-bar'];
+  document.addEventListener('DOMContentLoaded', function(){
+    sels.forEach(function(sel){
+      document.querySelectorAll(sel).forEach(function(el){
+        el.addEventListener('mousemove', function(e){
+          var r = el.getBoundingClientRect();
+          var x = e.clientX - r.left;
+          var y = e.clientY - r.top;
+          var mask = 'radial-gradient(280px circle at '+x+'px '+y+'px, black 0%, transparent 100%)';
+          el.style.setProperty('--grid-mask', mask);
+          el.style.cssText += ';--foo:bar'; // force repaint trick
+          // Apply mask via a style tag per element
+          if(!el._gridStyle){
+            var s = document.createElement('style');
+            document.head.appendChild(s);
+            el._gridStyle = s;
+            el._gridId = 'gel-'+(Math.random().toString(36).substr(2,6));
+            el.setAttribute('data-gid', el._gridId);
+          }
+          el._gridStyle.textContent =
+            '[data-gid="'+el._gridId+'"]:before{opacity:1;-webkit-mask-image:'+mask+';mask-image:'+mask+';background-color:rgba(46,134,171,0.04);}'+
+            '[data-gid="'+el._gridId+'"]:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(320px circle at '+x+'px '+y+'px,rgba(11,110,138,0.12) 0%,rgba(201,168,76,0.07) 40%,transparent 70%);transition:background 0.1s;}';
+        });
+        el.addEventListener('mouseleave', function(){
+          if(el._gridStyle) el._gridStyle.textContent = '';
+        });
+      });
+    });
+  });
+})();
+</script>
+
+<!-- CHECKOUT MODAL -->
+<div class="co-overlay" id="coOverlay">
+  <div class="co-modal">
+    <div class="co-header">
+      <h2 id="coTitle">Your Information</h2>
+      <button class="co-close" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="co-body">
+
+      <!-- Step 1: Info + order summary -->
+      <div class="co-step active" id="coStep1">
+        <div class="co-order-summary" id="coSummary"></div>
+        <div class="co-field">
+          <label>Full Name *</label>
+          <input type="text" id="coName" placeholder="Your full name">
+        </div>
+        <div class="co-field">
+          <label>Phone Number *</label>
+          <input type="tel" id="coPhone" placeholder="Your phone number">
+        </div>
+        <div class="co-field">
+          <label>Email Address *</label>
+          <input type="email" id="coEmail" placeholder="your@email.com">
+        </div>
+        <button class="co-btn-primary" onclick="goToPayment()">Continue to Payment →</button>
+      </div>
+
+      <!-- Step 2: QR code payment -->
+      <div class="co-step" id="coStep2">
+        <div class="co-qr-instructions">
+          <strong>Step 1:</strong> Open your Zelle app and scan the QR code below
+        </div>
+        <div class="co-amount" id="coAmount"></div>
+        <div class="co-qr-wrap">
+          <img src="zelle-qr.png" alt="Zelle QR Code">
+        </div>
+        <div class="co-qr-instructions">
+          <strong>Step 2:</strong> Send the exact amount shown above via Zelle<br><br>
+          <strong>Step 3:</strong> Once your payment is sent, click the button below so we know to process your order.
+        </div>
+        <button class="co-paid-btn" onclick="confirmPayment()">✓ I've Sent My Payment</button>
+      </div>
+
+      <!-- Step 3: Success -->
+      <div class="co-step" id="coStep3">
+        <div class="co-success">
+          <div class="co-success-icon">🎉</div>
+          <h3>Thank You!</h3>
+          <p>Your order has been received.<br>A confirmation email is on its way to <strong id="coConfirmEmail"></strong>.<br><br>We'll process your order and ship within 48 hours.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
