@@ -587,6 +587,8 @@
   .co-field label { display:block;font-size:13px;font-weight:600;color:var(--color-primary);margin-bottom:6px; }
   .co-field input { width:100%;padding:12px 14px;border:1px solid var(--color-border);border-radius:8px;font-size:15px;font-family:var(--font-body);outline:none;transition:border-color 0.2s; }
   .co-field input:focus { border-color:var(--color-accent); }
+  .co-field textarea { width:100%;padding:12px 14px;border:1px solid var(--color-border);border-radius:8px;font-size:15px;font-family:var(--font-body);outline:none;resize:vertical;min-height:90px;transition:border-color 0.2s; }
+  .co-field textarea:focus { border-color:var(--color-accent); }
   .co-order-summary { background:var(--color-surface);border-radius:10px;padding:16px;margin-bottom:20px; }
   .co-order-summary h3 { font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-secondary);margin-bottom:12px; }
   .co-order-item { display:flex;justify-content:space-between;font-size:14px;color:var(--color-primary);padding:4px 0; }
@@ -1357,7 +1359,8 @@ function goToPayment() {
   const name = document.getElementById('coName').value.trim();
   const phone = document.getElementById('coPhone').value.trim();
   const email = document.getElementById('coEmail').value.trim();
-  if (!name || !phone || !email) { alert('Please fill in all fields.'); return; }
+  const address = document.getElementById('coAddress').value.trim();
+  if (!name || !phone || !email || !address) { alert('Please fill in all required fields.'); return; }
   if (!/\S+@\S+\.\S+/.test(email)) { alert('Please enter a valid email address.'); return; }
   document.getElementById('coStep1').classList.remove('active');
   document.getElementById('coStep2').classList.add('active');
@@ -1379,7 +1382,11 @@ function confirmPayment() {
   fd.append('Name', name);
   fd.append('Phone', phone);
   fd.append('Email', email);
+  const address = document.getElementById('coAddress').value.trim();
+  const instructions = document.getElementById('coInstructions').value.trim();
   fd.append('Items Ordered', items);
+  fd.append('Shipping Address', address);
+  if(instructions) fd.append('Special Instructions', instructions);
   fd.append('Order Total', '$' + total);
   fd.append('_autoresponse', 'Thank you ' + name + ' for your order with Body Pharma! We have received your Zelle payment confirmation. Your order (' + items + ') totaling $' + total + ' is being processed and will ship within 48 hours. If you have any questions, reply to this email. — The Body Pharma Team');
   fd.append('_template', 'box');
@@ -1482,6 +1489,14 @@ document.addEventListener('keydown', e => {
         <div class="co-field">
           <label>Email Address *</label>
           <input type="email" id="coEmail" placeholder="your@email.com">
+        </div>
+        <div class="co-field">
+          <label>Shipping Address *</label>
+          <input type="text" id="coAddress" placeholder="Street address, city, state, ZIP">
+        </div>
+        <div class="co-field">
+          <label>Special Instructions</label>
+          <textarea id="coInstructions" placeholder="Special instructions, notes about your order, or any other comments..."></textarea>
         </div>
         <button class="co-btn-primary" onclick="goToPayment()">Continue to Payment →</button>
       </div>
